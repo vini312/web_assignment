@@ -49,8 +49,10 @@ app.get("/registration",(req,res)=>{
 app.post("/registration",(req,res)=>{
 
     const messages = [];
+
+    let testExpEmail = /.*@+.*\.com/;
     
-    if(/\s/.test(req.body.custName))
+    if(req.body.custName == "")
     {
         messages.push("! Enter your name");
     }
@@ -58,6 +60,10 @@ app.post("/registration",(req,res)=>{
     if(req.body.email == "")
     {
         messages.push("! Enter your email");
+    }
+    else if (!testExpEmail.test(req.body.email))
+    {
+        messages.push("! invalid email");
     }
 
     if(req.body.password == "")
