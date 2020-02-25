@@ -50,7 +50,7 @@ app.post("/registration",(req,res)=>{
 
     const messages = [];
     
-    if(req.body.custName == "")
+    if(/\s/.test(req.body.custName))
     {
         messages.push("! Enter your name");
     }
