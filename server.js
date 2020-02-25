@@ -109,5 +109,6 @@ app.post("/login",(req,res)=>{
 // create the server with its respective port
 const PORT = process.env.PORT || 3000;
 app.listen(PORT,()=>{
+    // message when the server starts
     console.log(` The server is runing on port ${PORT}... \n Press ctrl + c to stop it...`)
 });
