@@ -1,0 +1,25 @@
+<div id="mainReg">
+    <img src="/img/amazon-logo.png" alt="Amazon logo">
+    <div id="formDiv">
+        <h1>Sign-In</h1>
+        <form action="/login" method="POST">
+            
+            {{#each error}}
+                <p id="errorWarning">{{this}}</p>
+            {{/each}}
+            <br>
+
+            <label for="email" class="formLabel">Email</label>
+            <input type="text" name="email" id="email" class="formInput">
+
+            <label for="password" class="formLabel">Password</label>
+            <input type="text" name="password" id="password" class="formInput">
+            <p class="formP">Password consist of at least 6 characters.</p class="formP">
+
+            <input type="submit" value="Continue" class="subButton">
+        </form>
+        <div class="formAlt">
+            <p>New to Amazon? <a href="/login">Create an account ></a></p>
+        </div>
+    </div>
+</div>

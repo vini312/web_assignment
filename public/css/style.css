@@ -1,0 +1,270 @@
+*
+{
+    padding: 0;
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+header
+{
+    background-color: #231f20;
+    display: grid;
+    grid-template-columns: 225px 1fr;
+}
+
+header > div > img
+{
+    width: 100%;
+}
+
+nav
+{
+    font-size: 1.4rem;
+    justify-self: end;
+}
+
+nav > ul > li
+{
+    display: inline-block;
+    padding: 40px 1.5rem;
+}
+
+nav > ul > li > a 
+
+{
+    color:#fff;
+    text-decoration: none;
+}
+
+footer
+{
+    background-color: #231f20;
+    display: grid;
+    grid-template-columns: 225px 1fr;
+}
+
+footer > div > img
+{
+    width: 80%;
+}
+
+footer div
+{
+    justify-self: end;
+}
+
+footer > div > ul > li
+{
+    display: inline-block;
+    padding: 20px 1.5rem;
+}
+
+footer > div > ul > li img
+{
+    height: 40px;
+}
+
+#banner
+{
+    background-color: #ecd8da;
+}
+
+#bannerImg
+{
+    display: block;
+    margin: 0 auto;
+}
+
+#categories
+{
+    background-image: linear-gradient(#ecd8da, #ffffff);
+    width: 100%;
+    margin: 0 auto;
+    padding: 10px 0;
+}
+
+#categories > h2, #bestSeller > h2
+{
+    padding: 0px 40px;
+}
+
+#catDiv
+{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    padding: 0px 30px;
+}
+
+#catElement
+{
+    padding: 20px 10px;
+    width: 272px;
+    display: block;
+    margin: 0 auto;
+}
+
+#bestSeller
+{
+    width: 100%;
+    margin: 0 auto;
+    padding: 10px 0;
+}
+
+#bestDiv
+{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    padding: 0px 30px;
+    max-width: 1920px;
+}
+
+#bestElement
+{
+    padding: 20px 10px;
+    width: 100%;
+    display: block;
+    margin: 0 auto;
+}
+
+#bestElement > img
+{
+    width: 100%;
+}
+
+#productsPage
+{
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    padding: 40px 20px;
+}
+
+#prodDiv
+{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    padding: 20px;
+}
+
+#prodCat
+{
+    padding: 0px 10px;
+}
+
+#prodElement
+{
+    padding: 10px;
+    max-width: 300px;
+}
+
+#prodElement img
+{
+    width: 100%;
+}
+
+#prodPrice
+{
+    font-size: 1rem;
+    font-weight: bold;
+    color: #B12704;
+    padding: 4px;
+}
+
+#prodName
+{
+    font-size: 1rem;
+    font-weight: bold;
+    color: #0066c0;
+    padding: 4px;
+}
+
+#mainReg
+{
+    width: 350px;
+    margin: auto;
+}
+
+#mainReg > img
+{
+    width: 100px;
+    display: block;
+    margin: auto;
+    padding: 15px;
+}
+
+#formDiv
+{
+    margin-bottom: 40px;
+    padding: 20px;
+    border: 1px #ddd solid;
+    border-radius: 4px;
+}
+
+#formDiv > h1
+{
+    font-weight: 400;
+    font-size: 1.75rem;
+}
+
+.formP
+{
+    color: #2b2b2b;
+    font-size: 0.75rem;
+    padding: 0.3rem;
+}
+
+.formLabel
+{
+    font-weight: bold;
+    font-size: 0.8rem;
+    display: block;
+    padding: 1.1rem 0 0.2rem 0;
+}
+
+.formInput
+{
+    padding: 7px;
+    border: 1px solid #a6a6a6;
+    border-radius: 3px;
+    width: 95%;
+}
+
+.subButton
+{
+    width: 100%;
+    border: 1px solid;
+    border-radius: 2px;
+    border-color: #a88734 #9c7e31 #846a29;
+    background: linear-gradient(to bottom,#f7dfa5,#f0c14b);
+    text-align: center;
+    padding: 0.4rem;
+    margin: 15px 0;
+    color:#000000;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.subButton:hover
+{
+    background: linear-gradient(to bottom,#e5cb8f,#fac02e);
+}
+
+.formTerms
+{
+    padding: 5px 0;
+    color: #111111;
+}
+
+.formAlt
+{
+    font-size: 0.8rem;
+    padding: 50px 0 0 0;
+    color: #111;
+}
+
+#errorWarning
+{
+    padding: 10px 0;
+    color: #c40000;
+    font-weight: 600;
+    font-size: 0.8rem;
+}

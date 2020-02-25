@@ -1,0 +1,34 @@
+<div id="mainReg">
+    <img src="/img/amazon-logo.png" alt="Amazon logo">
+    <div id="formDiv">
+        <h1>Create account</h1>
+        <form action="/registration" method="POST">
+            
+            {{#each error}}
+                <p id="errorWarning">{{this}}</p>
+            {{/each}}
+            <br>
+            <label for="custName" class="formLabel">Your Name</label>
+            <input type="text" name="custName" id="custName" class="formInput">
+
+            <label for="email" class="formLabel">Email</label>
+            <input type="text" name="email" id="email" class="formInput">
+
+            <label for="password" class="formLabel">Password</label>
+            <input type="text" name="password" id="password" class="formInput">
+            <p class="formP">Passwords must contain at least 6 characters.</p class="formP">
+
+            <label for="password2" class="formLabel">Password again</label>
+            <input type="text" name="password2" id="password2" class="formInput">
+
+            <input type="submit" value="Create your Amazon account" class="subButton">
+        </form>
+        <div class="formTerms">
+            <p class="formP">By creating an account, you agree to Amazon's</p>
+            <p class="formP">Conditions of Use and Privacy Notice.</p class="formP">
+        </div>
+        <div class="formAlt">
+            <p>Already have an account? <a href="/login">Sign in ></a></p>
+        </div>
+    </div>
+</div>

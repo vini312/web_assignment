@@ -1,0 +1,19 @@
+<div id="productsPage">
+    <div id="prodCat">
+        <h3>Categories</h3><br>
+        <p>Electronics</p><br>
+        <p>Cell Phones</p><br>
+        <p>Tools</p><br>
+        <p>Nutrition</p><br>
+    </div>
+    <div id="prodDiv">
+        {{#each prodDB}}
+            <div id="prodElement">
+                <img src="{{this.image}}" alt="{{this.name}}">
+                <p id="prodName">{{this.name}}</p>
+                <p id="prodPrice">{{this.price}}</p>
+            </div>
+        {{/each}}
+    </div>
+
+</div>
