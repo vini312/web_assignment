@@ -48,36 +48,60 @@ app.get("/registration",(req,res)=>{
 
 app.post("/registration",(req,res)=>{
 
-    const messages = [];
+    //variables to hold the error messages
+    let nameE;
+    let emailE;
+    let passE;
+    let pass2E;
 
-    let testExpEmail = /.*@+.*\.com/;
+    //regular expressions to be used on error handler
+    const testExpEmail = /.*@+.*\.com.*/;
+    const testPassword = /.{6,12}/;
+    
+    //value holder to render the page with the value entered by the user
+    let formValues = {
+        name: req.body.custName,
+        email: req.body.email,
+        password: req.body.password,
+        password2: req.body.password2
+    }
     
     if(req.body.custName == "")
     {
-        messages.push("! Enter your name");
+        nameE = "! Enter your name";
     }
 
     if(req.body.email == "")
     {
-        messages.push("! Enter your email");
+        emailE = "! Enter your email.";
     }
     else if (!testExpEmail.test(req.body.email))
     {
-        messages.push("! invalid email");
+        emailE = "! invalid e-mail address.";
     }
 
     if(req.body.password == "")
     {
-        messages.push("! Enter your password");
+        passE = "! Enter your password.";
+    }
+    else if (!testPassword.test(req.body.password))
+    {
+        passE = "! Passwords must consist of at least 6 characters.";
     }
 
-    if(messages.length > 0)
+    if(req.body.password2 != req.body.password)
     {
-        res.render("registration", {
-            title : "Customer Registration",
-            error : messages
-        });
+        pass2E = "! Passwords do not match";
     }
+
+    res.render("registration", {
+        title : "Customer Registration",
+        nameError: nameE,
+        emailError: emailE,
+        passError: passE,
+        pass2Error: pass2E,
+        formValues : formValues
+    });
 
 });
 

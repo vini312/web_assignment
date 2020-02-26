@@ -4,22 +4,31 @@
         <h1>Create account</h1>
         <form action="/registration" method="POST">
             
-            {{#each error}}
-                <p id="errorWarning">{{this}}</p>
-            {{/each}}
             <br>
             <label for="custName" class="formLabel">Your Name</label>
-            <input type="text" name="custName" id="custName" class="formInput">
+            <input type="text" name="custName" id="custName" class="formInput" value= {{formValues.name}}>
+            {{#if nameError}}
+                <p id="errorWarning">{{nameError}}</p>
+            {{/if}}
 
             <label for="email" class="formLabel">Email</label>
-            <input type="text" name="email" id="email" class="formInput">
+            <input type="text" name="email" id="email" class="formInput" value= {{formValues.email}}>
+            {{#if emailError}}
+                <p id="errorWarning">{{emailError}}</p>
+            {{/if}}
 
             <label for="password" class="formLabel">Password</label>
-            <input type="text" name="password" id="password" class="formInput">
+            <input type="text" name="password" id="password" class="formInput" value= {{formValues.password}}>
             <p class="formP">Passwords must contain at least 6 characters.</p class="formP">
+            {{#if passError}}
+                <p id="errorWarning">{{passError}}</p>
+            {{/if}}
 
             <label for="password2" class="formLabel">Password again</label>
-            <input type="text" name="password2" id="password2" class="formInput">
+            <input type="text" name="password2" id="password2" class="formInput" value= {{formValues.password2}}>
+            {{#if pass2Error}}
+                <p id="errorWarning">{{pass2Error}}</p>
+            {{/if}}
 
             <input type="submit" value="Create your Amazon account" class="subButton">
         </form>
