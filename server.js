@@ -56,7 +56,8 @@ app.post("/registration",(req,res)=>{
 
     //regular expressions to be used on error handler
     const testExpEmail = /.*@+.*\.com.*/;
-    const testPassword = /.{6,12}/;
+    const testPasswordSize = /.{6,}/;
+    const testPassword = /.*[!@#$%^&*]/
     
     //value holder to render the page with the value entered by the user
     let formValues = {
@@ -64,7 +65,7 @@ app.post("/registration",(req,res)=>{
         email: req.body.email,
         password: req.body.password,
         password2: req.body.password2
-    }
+    };
     
     if(req.body.custName == "")
     {
@@ -84,9 +85,13 @@ app.post("/registration",(req,res)=>{
     {
         passE = "! Enter your password.";
     }
-    else if (!testPassword.test(req.body.password))
+    else if (!testPasswordSize.test(req.body.password))
     {
         passE = "! Passwords must consist of at least 6 characters.";
+    }
+    else if (!testPassword.test(req.body.password))
+    {
+        passE = "! Passwords must have at least one special character.";
     }
 
     if(req.body.password2 != req.body.password)
@@ -115,25 +120,45 @@ app.get("/login",(req,res)=>{
 
 app.post("/login",(req,res)=>{
 
-    const messages = [];
+    //variables to hold the error messages
+    let emailE;
+    let passE;
+
+    //regular expressions to be used on error handler
+    const testExpEmail = /.*@+.*\.com.*/;
+    const testPasswordSize = /.{6,}/;
+
+    //value holder to render the page with the value entered by the user
+    let formValues = {
+        email: req.body.email,
+        password: req.body.password
+    };
 
     if(req.body.email == "")
     {
-        messages.push("! Enter your email");
+        emailE = "! Enter your email.";
+    }
+    else if (!testExpEmail.test(req.body.email))
+    {
+        emailE = "! invalid e-mail address.";
     }
 
     if(req.body.password == "")
     {
-        messages.push("! Enter your password");
+        passE = "! Enter your password.";
+    }
+    else if (!testPasswordSize.test(req.body.password))
+    {
+        passE = "! Passwords have at least 6 characters.";
     }
 
-    if(messages.length > 0)
-    {
-        res.render("login", {
-            title : "Sign-In",
-            error : messages
-        });
-    }
+    res.render("login", {
+        title : "Sign-In",
+        emailError: emailE,
+        passError: passE,
+        formValues : formValues
+    });
+
 });
 
 // create the server with its respective port

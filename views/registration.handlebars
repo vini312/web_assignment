@@ -18,14 +18,14 @@
             {{/if}}
 
             <label for="password" class="formLabel">Password</label>
-            <input type="text" name="password" id="password" class="formInput" value= {{formValues.password}}>
+            <input type="password" name="password" id="password" class="formInput" value= {{formValues.password}}>
             <p class="formP">Passwords must contain at least 6 characters.</p class="formP">
             {{#if passError}}
                 <p id="errorWarning">{{passError}}</p>
             {{/if}}
 
             <label for="password2" class="formLabel">Password again</label>
-            <input type="text" name="password2" id="password2" class="formInput" value= {{formValues.password2}}>
+            <input type="password" name="password2" id="password2" class="formInput" value= {{formValues.password2}}>
             {{#if pass2Error}}
                 <p id="errorWarning">{{pass2Error}}</p>
             {{/if}}

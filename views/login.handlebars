@@ -3,18 +3,19 @@
     <div id="formDiv">
         <h1>Sign-In</h1>
         <form action="/login" method="POST">
-            
-            {{#each error}}
-                <p id="errorWarning">{{this}}</p>
-            {{/each}}
-            <br>
 
             <label for="email" class="formLabel">Email</label>
-            <input type="text" name="email" id="email" class="formInput">
+            <input type="text" name="email" id="email" class="formInput" value= {{formValues.email}}>
+            {{#if emailError}}
+                <p id="errorWarning">{{emailError}}</p>
+            {{/if}}
 
             <label for="password" class="formLabel">Password</label>
-            <input type="text" name="password" id="password" class="formInput">
+            <input type="password" name="password" id="password" class="formInput" value= {{formValues.password}}>
             <p class="formP">Password consist of at least 6 characters.</p class="formP">
+            {{#if passError}}
+                <p id="errorWarning">{{passError}}</p>
+            {{/if}}
 
             <input type="submit" value="Continue" class="subButton">
         </form>
