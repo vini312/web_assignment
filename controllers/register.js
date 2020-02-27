@@ -16,6 +16,7 @@ router.post("/",(req,res)=>{
     let emailE;
     let passE;
     let pass2E;
+    let errorFlag = false;
 
     //regular expressions to be used on error handler
     const testExpEmail = /.*@+.*\.com.*/;
@@ -36,33 +37,40 @@ router.post("/",(req,res)=>{
     if(custName == "")
     {
         nameE = "! Enter your name";
+        errorFlag = true;
     }
 
     if(email == "")
     {
         emailE = "! Enter your email.";
+        errorFlag = true;
     }
     else if (!testExpEmail.test(email))
     {
         emailE = "! invalid e-mail address.";
+        errorFlag = true;
     }
 
     if(password == "")
     {
         passE = "! Enter your password.";
+        errorFlag = true;
     }
     else if (!testPasswordSize.test(password))
     {
         passE = "! Passwords must consist of at least 6 characters.";
+        errorFlag = true;
     }
     else if (!testPassword.test(password))
     {
         passE = "! Passwords must have at least one special character.";
+        errorFlag = true;
     }
 
     if(password2 != password)
     {
         pass2E = "! Passwords do not match";
+        errorFlag = true;
     }
 
     res.render("registration", {
@@ -74,27 +82,33 @@ router.post("/",(req,res)=>{
         formValues : formValues
     });
 
-    // using Twilio SendGrid's v3 Node.js Library
-    // https://github.com/sendgrid/sendgrid-nodejs
-    const sgMail = require('@sendgrid/mail');
+    if (!errorFlag)
+    {
+        // using Twilio SendGrid's v3 Node.js Library
+        // https://github.com/sendgrid/sendgrid-nodejs
+        const sgMail = require('@sendgrid/mail');
 
-    sgMail.setApiKey(process.env.SEND_GRID_API_KEY);
-    
-    const msg = {
-        to: `${email}`,
-        from: 'test@example.com',
-        subject: 'Sending with Twilio SendGrid is Fun',
-        text: 'and easy to do anywhere, even with Node.js',
-        html: '<strong>and easy to do anywhere, even with Node.js</strong>',
-    };
+        sgMail.setApiKey(process.env.SEND_GRID_API_KEY);
+        
+        const msg = {
+            to: `${email}`,
+            from: '@example.com',
+            subject: 'Registration confirmation',
+            html:   `Hello ${name}, <br><br>
+                    Thank you for registering on our web site! <br>
+                    We are looking forward to offer you the best service we can. <br><br>
+                    Best regards <br><br>
+                    The Directory.`
+        };
 
-    sgMail.send(msg)
-    .then(()=>{
-        res.redirect("/");
-    })
-    .catch(err=>{
-        console.log(`Error ${err}`);
-    })
+        sgMail.send(msg)
+        .then(()=>{
+            res.redirect("/");
+        })
+        .catch(err=>{
+            console.log(`Error ${err}`);
+        });
+    }
 
 });
 
