@@ -92,9 +92,9 @@ router.post("/",(req,res)=>{
         
         const msg = {
             to: `${email}`,
-            from: '@example.com',
+            from: 'amazon@example.com',
             subject: 'Registration confirmation',
-            html:   `Hello ${name}, <br><br>
+            html:   `Hello ${custName}, <br><br>
                     Thank you for registering on our web site! <br>
                     We are looking forward to offer you the best service we can. <br><br>
                     Best regards <br><br>
