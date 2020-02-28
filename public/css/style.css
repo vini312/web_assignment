@@ -36,6 +36,30 @@ nav > ul > li > a
     text-decoration: none;
 }
 
+@media (max-width: 640px)
+{
+    header
+    {
+        display: block;
+    }
+
+    header > div > img
+    {
+        width: 50%;
+        display: block;
+        margin: auto;
+    }
+
+    nav > ul > li
+    {
+        padding: 30px 1.5rem;
+        text-align: center;
+        list-style: none;
+        display: block;
+        border-top: 1px solid #ddd;
+    }
+}
+
 footer
 {
     background-color: #231f20;
