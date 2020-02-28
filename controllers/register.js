@@ -73,17 +73,18 @@ router.post("/",(req,res)=>{
         errorFlag = true;
     }
 
-    res.render("registration", {
-        title : "Customer Registration",
-        nameError: nameE,
-        emailError: emailE,
-        passError: passE,
-        pass2Error: pass2E,
-        formValues : formValues
-    });
-
-    if (!errorFlag)
+    
+    if (errorFlag)
     {
+        res.render("registration", {
+            title : "Customer Registration",
+            nameError: nameE,
+            emailError: emailE,
+            passError: passE,
+            pass2Error: pass2E,
+            formValues : formValues
+        });
+    }else{
         // using Twilio SendGrid's v3 Node.js Library
         // https://github.com/sendgrid/sendgrid-nodejs
         const sgMail = require('@sendgrid/mail');
@@ -103,11 +104,11 @@ router.post("/",(req,res)=>{
 
         sgMail.send(msg)
         .then(()=>{
-            res.redirect("/");
+            res.redirect("/dashboard");
         })
         .catch(err=>{
             console.log(`Error ${err}`);
-        });
+        })
     }
 
 });

@@ -177,13 +177,13 @@ footer > div > ul > li img
     padding: 4px;
 }
 
-#mainReg
+.mainReg
 {
     width: 350px;
     margin: auto;
 }
 
-#mainReg > img
+.mainReg > img
 {
     width: 100px;
     display: block;
@@ -191,7 +191,7 @@ footer > div > ul > li img
     padding: 15px;
 }
 
-#formDiv
+.formDiv
 {
     margin-bottom: 40px;
     padding: 20px;
@@ -199,7 +199,7 @@ footer > div > ul > li img
     border-radius: 4px;
 }
 
-#formDiv > h1
+.formDiv > h1
 {
     font-weight: 400;
     font-size: 1.75rem;
@@ -267,4 +267,19 @@ footer > div > ul > li img
     color: #c40000;
     font-weight: 600;
     font-size: 0.8rem;
+}
+
+#confH1
+{
+    text-align: center;
+    padding: 1.4rem;
+}
+
+#confMessage
+{
+    text-align: center;
+    font-size: 1.5rem;
+    line-height: 1.6;
+    display: block;
+    padding: 1.1rem 0 0.2rem 0;
 }
