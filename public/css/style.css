@@ -36,30 +36,6 @@ nav > ul > li > a
     text-decoration: none;
 }
 
-@media (max-width: 640px)
-{
-    header
-    {
-        display: block;
-    }
-
-    header > div > img
-    {
-        width: 50%;
-        display: block;
-        margin: auto;
-    }
-
-    nav > ul > li
-    {
-        padding: 30px 1.5rem;
-        text-align: center;
-        list-style: none;
-        display: block;
-        border-top: 1px solid #ddd;
-    }
-}
-
 footer
 {
     background-color: #231f20;
@@ -69,7 +45,8 @@ footer
 
 footer > div > img
 {
-    width: 80%;
+    width: 100%;
+    max-width: 180px;
 }
 
 footer div
@@ -95,8 +72,11 @@ footer > div > ul > li img
 
 #bannerImg
 {
-    display: block;
+    background-image: url(/img/homePage/promoBanner1.png);
+    background-size: 640px 100%;
     margin: 0 auto;
+    max-width: 640px;
+    height: 249px;
 }
 
 #categories
@@ -153,6 +133,95 @@ footer > div > ul > li img
 #bestElement > img
 {
     width: 100%;
+}
+
+@media (max-width: 640px)
+{
+    media
+    {
+        
+    }
+
+    header
+    {
+        display: block;
+    }
+
+    header > div > img
+    {
+        width: 50%;
+        max-width: 180px;
+        display: block;
+        margin: auto;
+    }
+
+    nav > ul > li
+    {
+        padding: 30px 1.5rem;
+        text-align: center;
+        list-style: none;
+        display: block;
+        border-top: 1px solid #ddd;
+    }
+
+    footer
+    {
+        display: block;
+    }
+
+    footer > div > img
+    {
+        width: 100%;
+        max-width: 180px;
+        display: block;
+        margin: auto;
+    }
+
+    footer > div > ul
+    {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
+
+    footer > div > ul > li
+    {
+        display: block;
+        margin: auto;
+        padding: 20px 10px;
+    }
+
+    footer > div > ul > li img
+    {
+        height: 3rem;
+    }
+
+    #bannerImg
+    {
+        background-image: url(/img/homePage/promoBannerMobile.png);
+        background-size: 360px 100%;
+        max-width: 360px;
+        height: 484px;
+    }
+
+    #categories > h2
+    {
+        max-width: 354px;
+        margin: auto;
+    }
+    #catDiv
+    {
+        display: block;
+    }
+
+    #bestSeller
+    {
+        max-width: 354px;
+    }
+
+    #bestDiv
+    {
+        display: block;
+    }
 }
 
 #productsPage
