@@ -305,6 +305,12 @@ footer > div > ul > li img
 
     nav > ul > li
     {
+        padding: 0;
+        display: block;
+    }
+    
+    nav > ul > li > a
+    {
         padding: 30px 1.5rem;
         text-align: center;
         list-style: none;
