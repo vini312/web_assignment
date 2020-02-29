@@ -57,12 +57,12 @@ footer div
 footer > div > ul > li
 {
     display: inline-block;
-    padding: 20px 1.5rem;
 }
 
 footer > div > ul > li img
 {
     height: 40px;
+    padding: 20px 1.5rem;
 }
 
 #banner
@@ -288,13 +288,13 @@ footer > div > ul > li img
     padding: 1.1rem 0 0.2rem 0;
 }
 
-@media (max-width: 640px)
+@media (max-width: 768px)
 {
     header
     {
         display: block;
     }
-
+    
     header > div > img
     {
         width: 50%;
@@ -303,12 +303,94 @@ footer > div > ul > li img
         margin: auto;
     }
 
+    nav > ul
+    {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
+
     nav > ul > li
     {
         padding: 0;
         display: block;
     }
+
+    nav > ul > li > a
+    {
+        padding: 30px 1.5rem;
+        text-align: center;
+        list-style: none;
+        display: block;
+        border-top: 1px solid #ddd;
+    }
+
+    #catDiv
+    {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    #bestDiv
+    {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+
+    #productsPage
+    {
+        display: block;
+    }
+
+    #prodDiv
+    {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+
+    #prodCat
+    {
+        display: none;
+    }
     
+    .formLabel
+    {
+        font-weight: normal;
+        font-size: 1.3rem;
+    }
+
+    .formInput
+    {
+        padding: 10px;
+        border-radius: 5px;
+        font-size: 1.3rem;
+    }
+
+    .subButton
+    {
+        border-radius: 10px;
+        padding: 1.4rem;
+        font-size: 1.1rem;
+    }
+
+    .formAlt
+    {
+        font-size: 0.9rem;
+        padding: 50px 0 30px 0;
+    }
+
+    .formAlt a
+    {
+        padding: 20px;
+        border: 1px solid #a6a6a6;
+        border-radius: 3px;
+    }
+}
+
+@media (max-width: 640px)
+{
+    nav > ul
+    {
+        display: block;
+    }
+
     nav > ul > li > a
     {
         padding: 30px 1.5rem;
@@ -378,57 +460,14 @@ footer > div > ul > li img
         display: block;
     }
 
-    #productsPage
-    {
-        display: block;
-    }
-
     #prodDiv
     {
         display: block;
-    }
-
-    #prodCat
-    {
-        display: none;
     }
 
     #prodElement
     {
         display: block;
         margin: auto;
-    }
-
-    .formLabel
-    {
-        font-weight: normal;
-        font-size: 1.3rem;
-    }
-
-    .formInput
-    {
-        padding: 10px;
-        border-radius: 5px;
-        font-size: 1.3rem;
-    }
-
-    .subButton
-    {
-        border-radius: 10px;
-        padding: 1.4rem;
-        font-size: 1.1rem;
-    }
-
-    .formAlt
-    {
-        font-size: 0.9rem;
-        padding: 50px 0 30px 0;
-    }
-
-    .formAlt a
-    {
-        padding: 20px;
-        border: 1px solid #a6a6a6;
-        border-radius: 3px;
     }
 }
