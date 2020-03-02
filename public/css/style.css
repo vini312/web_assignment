@@ -62,7 +62,7 @@ footer > div > ul > li
 footer > div > ul > li img
 {
     height: 40px;
-    padding: 20px 1.5rem;
+    padding: 1.5rem;
 }
 
 #banner
@@ -288,7 +288,7 @@ footer > div > ul > li img
     padding: 1.1rem 0 0.2rem 0;
 }
 
-@media (max-width: 768px)
+@media (max-width: 960px)
 {
     header
     {
@@ -423,7 +423,6 @@ footer > div > ul > li img
     {
         display: block;
         margin: auto;
-        padding: 20px 10px;
     }
 
     footer > div > ul > li img
