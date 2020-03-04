@@ -19,7 +19,7 @@ router.post("/",(req,res)=>{
     let errorFlag = false;
 
     //regular expressions to be used on error handler
-    const testExpEmail = /.*@+.*\.com.*/;
+    const testExpEmail = /.*@+.*\..*/;
     const testPasswordSize = /.{6,}/;
     const testPassword = /.*[!@#$%^&*]/
     
@@ -93,7 +93,7 @@ router.post("/",(req,res)=>{
         
         const msg = {
             to: `${email}`,
-            from: 'amazon@example.com',
+            from: 'amazon@confirmation.com',
             subject: 'Registration confirmation',
             html:   `Hello ${custName}, <br><br>
                     Thank you for registering on our web site! <br>
