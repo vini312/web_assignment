@@ -1,5 +1,8 @@
 const express = require('express');
+//import the router
 const router = express.Router();
+//import the model to be able to use database
+const userModel = require("../model/user");
 
 router.get("/",(req,res)=>{
 
@@ -34,6 +37,7 @@ router.post("/",(req,res)=>{
         password2: password2
     };
     
+    //validation condition
     if(custName == "")
     {
         nameE = "! Enter your name";
@@ -73,7 +77,8 @@ router.post("/",(req,res)=>{
         errorFlag = true;
     }
 
-    
+    //"if" render the page with errors flag
+    //"else" store the user, send confirmation email and redirect to dashboard
     if (errorFlag)
     {
         res.render("registration", {
@@ -85,30 +90,47 @@ router.post("/",(req,res)=>{
             formValues : formValues
         });
     }else{
-        // using Twilio SendGrid's v3 Node.js Library
-        // https://github.com/sendgrid/sendgrid-nodejs
-        const sgMail = require('@sendgrid/mail');
+        const newUser = 
+        {
+            name:custName,
+            email:email,
+            password:password
+        }
 
-        sgMail.setApiKey(process.env.SEND_GRID_API_KEY);
-        
-        const msg = {
-            to: `${email}`,
-            from: 'amazon@confirmation.com',
-            subject: 'Registration confirmation',
-            html:   `Hello ${custName}, <br><br>
-                    Thank you for registering on our web site! <br>
-                    We are looking forward to offer you the best service we can. <br><br>
-                    Best regards <br><br>
-                    The Directory.`
-        };
-
-        sgMail.send(msg)
+        const user = new userModel(newUser);
+        user.save()
         .then(()=>{
+            //temp redirect*************
             res.redirect("/dashboard");
+
+            /* using Twilio SendGrid's v3 Node.js Library
+            // https://github.com/sendgrid/sendgrid-nodejs
+            const sgMail = require('@sendgrid/mail');
+
+            sgMail.setApiKey(process.env.SEND_GRID_API_KEY);
+            
+            const msg = {
+                to: `${email}`,
+                from: 'amazon@confirmation.com',
+                subject: 'Registration confirmation',
+                html:   `Hello ${custName}, <br><br>
+                        Thank you for registering on our web site! <br>
+                        We are looking forward to offer you the best service we can. <br><br>
+                        Best regards <br><br>
+                        The Directory.`
+            };
+
+            sgMail.send(msg)
+            .then(()=>{
+                res.redirect("/dashboard");
+            })
+            .catch(err=>{
+                console.log(`Error ${err}`);
+            })*/
         })
         .catch(err=>{
-            console.log(`Error ${err}`);
-        })
+            console.log(`Error creating the user on MongoDB ${err}`)
+        });
     }
 
 });
