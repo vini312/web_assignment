@@ -1,5 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+//import bcrypt to be able to encypt password
+const bcrypt = require("bcryptjs");
 
 //create the schema for this document
 const userSchema = new Schema({
@@ -23,6 +25,23 @@ const userSchema = new Schema({
     default:Date.now()
   }
 });
+
+//to use bcryptjs on model file instead of register controller
+userSchema.pre("save",function(next){
+  //random generated characters (10) is the level
+  bcrypt.genSalt(10)
+  .then((salt)=>{
+    //encrypting the password with the salt
+    bcrypt.hash(this.password, salt)
+    .then((encryptedPassword)=>{
+      this.password = encryptedPassword;
+      //to make the program continue we call next
+      next();
+    })
+    .catch(err=>console.log(`Error during the hashing: ${err}`));
+  })
+  .catch(err=>console.log(`Error during the salting: ${err}`));
+})
 
 //model allows CRUD operations on the collections
 const userModel = mongoose.model('user', userSchema);
