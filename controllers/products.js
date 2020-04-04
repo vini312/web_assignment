@@ -7,7 +7,7 @@ const DBs = require("../model/DBs");
 router.get("/",(req,res)=>{
 
     // as a response obj argument, render the file products.handlebars
-    res.render("products",{
+    res.render("products/products",{
         title: "Products",
         prodDB: DBs.fakeProdDB
     });

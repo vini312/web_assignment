@@ -7,7 +7,7 @@ const userModel = require("../model/user");
 router.get("/",(req,res)=>{
 
     // as a response obj argument, render the file registration.handlebars
-    res.render("registration",{
+    res.render("registration/registration",{
         title: "Customer Registration"
     });
 });
@@ -36,6 +36,23 @@ router.post("/",(req,res)=>{
         password: password,
         password2: password2
     };
+
+    //function to redirect to same page with error message
+    function redirectError()
+    {
+        if (errorFlag)
+        {  
+            console.log(`dentro do error flag=${errorFlag}`);
+            res.render("registration/registration", {
+                title : "Customer Registration",
+                nameError: nameE,
+                emailError: emailE,
+                passError: passE,
+                pass2Error: pass2E,
+                formValues : formValues
+            });
+        }
+    }
     
     //validation condition
     if(custName == "")
@@ -77,61 +94,72 @@ router.post("/",(req,res)=>{
         errorFlag = true;
     }
 
-    //"if" render the page with errors flag
-    //"else" store the user, send confirmation email and redirect to dashboard
-    if (errorFlag)
+    console.log(` flag=${errorFlag}`);
+    //render the page with errors flag
+    redirectError();
+
+    //if there were no errors check if email already was used and
+    //store the user, send confirmation email and redirect to dashboard
+
+    if(!errorFlag)
     {
-        res.render("registration", {
-            title : "Customer Registration",
-            nameError: nameE,
-            emailError: emailE,
-            passError: passE,
-            pass2Error: pass2E,
-            formValues : formValues
-        });
-    }else{
-        const newUser = 
-        {
-            name:custName,
-            email:email,
-            password:password
-        }
+        userModel.findOne({email:req.body.email})
+        .then((user)=>{
+            console.log(`retornou user`);
+            if(user != null){
+                emailE = "! e-mail address already being used.";
+                errorFlag = true;
+                redirectError();
+            }
+            else
+            {
+                const newUser = {
+                    name:custName,
+                    email:email,
+                    password:password
+                }
 
-        const user = new userModel(newUser);
-        user.save()
-        .then(()=>{
-            //temp redirect*************
-            res.redirect("/dashboard");
+                const user = new userModel(newUser);
+                user.save()
+                .then(()=>{
+                    //temp redirect*************
+                    res.redirect("/dashboard");
 
-            /* using Twilio SendGrid's v3 Node.js Library
-            // https://github.com/sendgrid/sendgrid-nodejs
-            const sgMail = require('@sendgrid/mail');
+                    /* using Twilio SendGrid's v3 Node.js Library
+                    // https://github.com/sendgrid/sendgrid-nodejs
+                    const sgMail = require('@sendgrid/mail');
 
-            sgMail.setApiKey(process.env.SEND_GRID_API_KEY);
-            
-            const msg = {
-                to: `${email}`,
-                from: 'amazon@confirmation.com',
-                subject: 'Registration confirmation',
-                html:   `Hello ${custName}, <br><br>
-                        Thank you for registering on our web site! <br>
-                        We are looking forward to offer you the best service we can. <br><br>
-                        Best regards <br><br>
-                        The Directory.`
-            };
+                    sgMail.setApiKey(process.env.SEND_GRID_API_KEY);
+                    
+                    const msg = {
+                        to: `${email}`,
+                        from: 'amazon@confirmation.com',
+                        subject: 'Registration confirmation',
+                        html:   `Hello ${custName}, <br><br>
+                                Thank you for registering on our web site! <br>
+                                We are looking forward to offer you the best service we can. <br><br>
+                                Best regards <br><br>
+                                The Directory.`
+                    };
 
-            sgMail.send(msg)
-            .then(()=>{
-                res.redirect("/dashboard");
-            })
-            .catch(err=>{
-                console.log(`Error ${err}`);
-            })*/
+                    sgMail.send(msg)
+                    .then(()=>{
+                        res.redirect("/dashboard");
+                    })
+                    .catch(err=>{
+                        console.log(`Error ${err}`);
+                    })*/
+                })
+                .catch(err=>{
+                    console.log(`Error creating the user on MongoDB ${err}`)
+                });
+            }
         })
         .catch(err=>{
-            console.log(`Error creating the user on MongoDB ${err}`)
-        });
+            console.log(`Error on findOne ${err}`);
+        })
     }
+    
 
 });
 

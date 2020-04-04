@@ -3,6 +3,7 @@ const express = require("express");
 const exphbs = require("express-handlebars");
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+const session = require('express-session');
 
 //load environment variables from keys.env
 require('dotenv').config({path:"./config/keys.env"});
@@ -14,11 +15,28 @@ const app = express();
 app.engine('handlebars', exphbs());
 app.set('view engine', 'handlebars');
 
-//make express use the public folder
+//make middleware use the public folder
 app.use(express.static("public"));
 
-app.use(bodyParser.urlencoded({ extended: false }))
+//bodyParser middleware
+app.use(bodyParser.urlencoded({ extended: false }));
 
+//express-session initialization
+app.use(session({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: true,
+    cookie: { secure: true }
+  }));
+
+//custom middleware function
+app.use((req, res, next)=>{
+    //res.locals.user is a global handlebars variable, so every handlebars file can use it
+    res.locals.user = req.session.userInfo;
+    next();
+})
+
+//map express to all router objects
 app.use("/", require("./controllers/general"));
 app.use("/registration", require("./controllers/register"));
 app.use("/login", require("./controllers/login"));

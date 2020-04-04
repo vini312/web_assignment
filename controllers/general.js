@@ -8,7 +8,7 @@ const DBs = require("../model/DBs");
 router.get("/",(req,res)=>{
 
     // as a response obj argument, render the file home.handlebars
-    res.render("home",{
+    res.render("general/home",{
         title: "Home Page",
         catDB: DBs.fakeCatDB,
         bestDB: DBs.fakeBestDB
@@ -19,8 +19,17 @@ router.get("/",(req,res)=>{
 router.get("/dashboard",(req,res)=>{
 
     // as a response obj argument, render the file home.handlebars
-    res.render("dashboard",{
+    res.render("registration/dashboard",{
         title: "Confirmation"
+    });
+});
+
+//get a request for the dashboard
+router.get("/logindashboard",(req,res)=>{
+
+    // as a response obj argument, render the file home.handlebars
+    res.render("login/logindashboard",{
+        title: "Login Confirmation"
     });
 });
 
