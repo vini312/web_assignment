@@ -122,10 +122,7 @@ router.post("/",(req,res)=>{
                 const user = new userModel(newUser);
                 user.save()
                 .then(()=>{
-                    //temp redirect*************
-                    res.redirect("/dashboard");
-
-                    /* using Twilio SendGrid's v3 Node.js Library
+                    // using Twilio SendGrid's v3 Node.js Library
                     // https://github.com/sendgrid/sendgrid-nodejs
                     const sgMail = require('@sendgrid/mail');
 
@@ -148,7 +145,7 @@ router.post("/",(req,res)=>{
                     })
                     .catch(err=>{
                         console.log(`Error ${err}`);
-                    })*/
+                    })
                 })
                 .catch(err=>{
                     console.log(`Error creating the user on MongoDB ${err}`)
