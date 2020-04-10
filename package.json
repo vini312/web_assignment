@@ -5,7 +5,8 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "node server.js",
+    "nodemonServerStarter" : "nodemon app"
   },
   "keywords": [],
   "author": "",
@@ -18,5 +19,8 @@
     "express-handlebars": "^3.1.0",
     "express-session": "^1.17.0",
     "mongoose": "^5.9.6"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.3"
   }
 }

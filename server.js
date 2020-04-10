@@ -23,11 +23,11 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 //express-session initialization
 app.use(session({
-    secret: process.env.SESSION_SECRET,
+    secret: `${process.env.SESSION_SECRET}`,
     resave: false,
     saveUninitialized: true,
-    cookie: { secure: true }
-  }));
+    //cookie: { secure: true }
+}));
 
 //custom middleware function
 app.use((req, res, next)=>{

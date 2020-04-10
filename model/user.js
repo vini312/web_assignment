@@ -23,6 +23,10 @@ const userSchema = new Schema({
   dateCreated:{
     type:Date,
     default:Date.now()
+  },
+  type:{
+    type:String,
+    default:"user"
   }
 });
 

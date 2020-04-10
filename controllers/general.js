@@ -15,22 +15,4 @@ router.get("/",(req,res)=>{
     });
 });
 
-//get a request for the dashboard
-router.get("/dashboard",(req,res)=>{
-
-    // as a response obj argument, render the file home.handlebars
-    res.render("registration/dashboard",{
-        title: "Confirmation"
-    });
-});
-
-//get a request for the dashboard
-router.get("/logindashboard",(req,res)=>{
-
-    // as a response obj argument, render the file home.handlebars
-    res.render("login/logindashboard",{
-        title: "Login Confirmation"
-    });
-});
-
 module.exports = router;

@@ -41,8 +41,7 @@ router.post("/",(req,res)=>{
     function redirectError()
     {
         if (errorFlag)
-        {  
-            console.log(`dentro do error flag=${errorFlag}`);
+        {
             res.render("registration/registration", {
                 title : "Customer Registration",
                 nameError: nameE,
@@ -94,7 +93,6 @@ router.post("/",(req,res)=>{
         errorFlag = true;
     }
 
-    console.log(` flag=${errorFlag}`);
     //render the page with errors flag
     redirectError();
 
@@ -105,7 +103,6 @@ router.post("/",(req,res)=>{
     {
         userModel.findOne({email:req.body.email})
         .then((user)=>{
-            console.log(`retornou user`);
             if(user != null){
                 emailE = "! e-mail address already being used.";
                 errorFlag = true;
@@ -122,6 +119,10 @@ router.post("/",(req,res)=>{
                 const user = new userModel(newUser);
                 user.save()
                 .then(()=>{
+                    // temp redirect while email is deactivated
+                    res.redirect("registration/dashboard");
+
+                    /*
                     // using Twilio SendGrid's v3 Node.js Library
                     // https://github.com/sendgrid/sendgrid-nodejs
                     const sgMail = require('@sendgrid/mail');
@@ -141,14 +142,14 @@ router.post("/",(req,res)=>{
 
                     sgMail.send(msg)
                     .then(()=>{
-                        res.redirect("/dashboard");
+                        res.redirect("registration/dashboard");
                     })
                     .catch(err=>{
-                        console.log(`Error ${err}`);
-                    })
+                        console.log(`Error sending confirmation email: ${err}`);
+                    }) */
                 })
                 .catch(err=>{
-                    console.log(`Error creating the user on MongoDB ${err}`)
+                    console.log(`Error creating the user on MongoDB: ${err}`)
                 });
             }
         })
@@ -156,8 +157,15 @@ router.post("/",(req,res)=>{
             console.log(`Error on findOne ${err}`);
         })
     }
-    
+});
 
+//get a request for the dashboard
+router.get("/dashboard",(req,res)=>{
+
+    // as a response obj argument, render the file home.handlebars
+    res.render("registration/dashboard",{
+        title: "Confirmation"
+    });
 });
 
 module.exports = router;

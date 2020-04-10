@@ -5,6 +5,10 @@ const router = express.Router();
 const userModel = require("../model/user");
 //import bcrypt
 const bcrypt = require("bcryptjs");
+//import custom middleware function from autSession module
+const isAthenticated = require("../middleware/autSession");
+//import custom middleware function from authorization module
+const authorization = require("../middleware/authorization");
 
 router.get("/",(req,res)=>{
 
@@ -43,6 +47,7 @@ router.post("/",(req,res)=>{
         }
     }
 
+    // validation not using DB data
     if(req.body.email == "")
     {
         emailE = "! Enter your email.";
@@ -67,26 +72,29 @@ router.post("/",(req,res)=>{
 
     redirectError();
 
+    //validation using DB data
     if(!errorFlag)
     {
         userModel.findOne({email:req.body.email})
-        .then((user)=>{
+        .then(user=>{
+            // user email not found
             if(user == null){
                 emailE = "! E-mail address not found.";
                 errorFlag = true;
                 redirectError();
             }
+            // user email found
             else
             {
                 // Load hash from your password DB.
                 bcrypt.compare(req.body.password, user.password)
-                .then((match)=>{
+                .then(match=>{
                     if(match)
                     {
-                        //create a session
+                        //create a session with the user found
                         req.session.userInfo = user;
-                        //redirect
-                        res.redirect("/logindashboard");
+                        //redirect to dashboard
+                        res.redirect("login/logindashboard");
                     }
                     else
                     {
@@ -103,6 +111,16 @@ router.post("/",(req,res)=>{
             errorFlag = true;
         })
     }
+});
+
+//get a request for the dashboard after successful login
+router.get("/logindashboard",isAthenticated,authorization);
+
+//logout get request to kill the session
+router.get("/logout", (req, res)=>{
+
+    req.session.destroy();
+    res.redirect("/login");
 });
 
 module.exports = router;
