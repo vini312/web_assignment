@@ -4,6 +4,7 @@ const exphbs = require("express-handlebars");
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const session = require('express-session');
+const fileUpload = require('express-fileupload');
 
 //load environment variables from keys.env
 require('dotenv').config({path:"./config/keys.env"});
@@ -21,6 +22,9 @@ app.use(express.static("public"));
 //bodyParser middleware
 app.use(bodyParser.urlencoded({ extended: false }));
 
+//file upload package
+app.use(fileUpload());
+
 //express-session initialization
 app.use(session({
     secret: `${process.env.SESSION_SECRET}`,
@@ -33,6 +37,11 @@ app.use(session({
 app.use((req, res, next)=>{
     //res.locals.user is a global handlebars variable, so every handlebars file can use it
     res.locals.user = req.session.userInfo;
+
+    //check if user is defined to create a global variable that activate admin options (Add products)
+    if(req.session.userInfo && req.session.userInfo.type == "clerk"){
+        res.locals.clerk = 1;
+    }
     next();
 })
 

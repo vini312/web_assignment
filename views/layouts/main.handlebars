@@ -15,8 +15,11 @@
             <ul>
                 <li><a href="/">Home</a></li>
                 <li><a href="/products">Products</a></li>
+                {{#if clerk}}
+                    <li><a href="/products/addProducts">Add Products</a></li>
+                {{/if}}
                 {{#if user}}
-                    <li><a >Logged as {{user.name}}</a></li>
+                    <li><a href="/login/logindashboard">Logged as {{user.name}}</a></li>
                     <li><a href="/login/logout">Logout</a></li>
                 {{else}}
                     <li><a href="/registration">Customer Registration</a></li>

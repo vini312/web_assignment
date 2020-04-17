@@ -224,6 +224,11 @@ footer > div > ul > li img
     padding: 1.1rem 0 0.2rem 0;
 }
 
+#pBestSeller
+{
+    display: inline-block;
+}
+
 .formInput
 {
     padding: 7px;

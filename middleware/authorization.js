@@ -10,7 +10,7 @@ const authorizationType = (req, res, next)=>{
     else
     {
         res.render("login/logindashboard",{
-            title: "Clerk Login"
+            title: "Admin Login"
         });
     }
 }

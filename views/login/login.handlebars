@@ -5,13 +5,13 @@
         <form action="/login" method="POST">
 
             <label for="email" class="formLabel">Email</label>
-            <input type="text" name="email" id="email" class="formInput" value= {{formValues.email}}>
+            <input type="text" name="email" id="email" class="formInput" value="admin@clerk.com" {{formValues.email}}>
             {{#if emailError}}
                 <p id="errorWarning">{{emailError}}</p>
             {{/if}}
 
             <label for="password" class="formLabel">Password</label>
-            <input type="password" name="password" id="password" class="formInput" value= {{formValues.password}}>
+            <input type="password" name="password" id="password" class="formInput" value="admin!" {{formValues.password}}>
             <p class="formP">Password consist of at least 6 characters.</p class="formP">
             {{#if passError}}
                 <p id="errorWarning">{{passError}}</p>

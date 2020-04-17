@@ -1,0 +1,60 @@
+<div class="mainReg">
+    <img src="/img/amazon-logo.png" alt="Amazon logo">
+    <div class="formDiv">
+        {{#if added}}
+        <h1>Product added,</h1><br>
+        {{/if}}
+        <h1>Add a new Product</h1>
+        <form action="/products/addProducts" method="POST" enctype="multipart/form-data">
+            
+            <br>
+            <label for="pName" class="formLabel">Product Name</label>
+            <input type="text" name="pName" id="pName" class="formInput" value={{formValues.pName}}>
+            {{#if nameError}}
+                <p id="errorWarning">{{nameError}}</p>
+            {{/if}}
+
+            <label for="pPrice" class="formLabel">Price $</label>
+            <input type="number" min="0.00" step="0.01" name="pPrice" id="pPrice" class="formInput" value={{formValues.pPrice}}>
+            {{#if priceError}}
+                <p id="errorWarning">{{priceError}}</p>
+            {{/if}}
+
+            <label for="pQty" class="formLabel">Quantity in stock</label>
+            <input type="number" name="pQty" id="pQty" class="formInput" value={{formValues.pQty}}>
+            {{#if qtyError}}
+                <p id="errorWarning">{{qtyError}}</p>
+            {{/if}}
+
+            <label for="pDesc" class="formLabel">Description</label>
+            <textarea type="text" name="pDesc" id="pDesc" class="formInput" value={{formValues.pDesc}}></textarea>
+            {{#if descError}}
+                <p id="errorWarning">{{descError}}</p>
+            {{/if}}
+
+            <label for="pCat" class="formLabel">Category</label>
+            <select name="pCat" id="pCat" class="formInput">
+                <option value="none" selected disabled hidden>Select a category</option> 
+                {{#each catDB}}
+                <option value={{this.title}}>{{this.title}}</option>
+                {{/each}}
+            </select>
+            {{#if catError}}
+                <p id="errorWarning">{{catError}}</p>
+            {{/if}}
+
+            <input type="checkbox" id="pBestSeller" name="pBestSeller" value="true">
+            <label for="pBestSeller" id="pBestSeller" class="formLabel"> Best Seller</label><br>
+
+            <label for="pImage" class="formLabel">Product image</label>
+            <input type="file" name="pImage" id="pImage" class="subButton">
+            {{#if imageError}}
+                <p id="errorWarning">{{imageError}}</p>
+            {{/if}}
+
+            <input type="submit" value="Add new product" class="subButton">
+        </form>
+       
+        </div>
+    </div>
+</div>

@@ -34,7 +34,8 @@ router.post("/",(req,res)=>{
         email: req.body.email,
         password: req.body.password
     };
-
+    
+    //function to render again the page with error messages
     function redirectError(){
         if(errorFlag)
         {

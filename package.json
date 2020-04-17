@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
-    "nodemonServerStarter" : "nodemon app"
+    "nodemonServerStarter": "nodemon app"
   },
   "keywords": [],
   "author": "",
@@ -16,6 +16,7 @@
     "bcryptjs": "^2.4.3",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
+    "express-fileupload": "^1.1.7-alpha.3",
     "express-handlebars": "^3.1.0",
     "express-session": "^1.17.0",
     "mongoose": "^5.9.6"
