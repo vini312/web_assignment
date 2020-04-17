@@ -13,7 +13,14 @@ require('dotenv').config({path:"./config/keys.env"});
 const app = express();
 
 // set the engine of the express object to handlebars
-app.engine('handlebars', exphbs());
+app.engine('handlebars', exphbs({
+    helpers:{
+        if_selected : (value, option)=>{
+            if(value == option)
+                return "selected";
+        }
+    }
+}));
 app.set('view engine', 'handlebars');
 
 //make middleware use the public folder
@@ -44,6 +51,17 @@ app.use((req, res, next)=>{
     }
     next();
 })
+
+app.use((req, res, next)=>{
+    if(req.query.method == "PUT"){
+        req.method = "PUT";
+    }
+    else if (req.query.method == "DELETE"){
+        req.method = "DELETE";
+    }
+    
+    next();
+});
 
 //map express to all router objects
 app.use("/", require("./controllers/general"));

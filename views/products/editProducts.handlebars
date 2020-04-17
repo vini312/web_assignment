@@ -1,12 +1,8 @@
 <div class="mainReg">
     <img src="/img/amazon-logo.png" alt="Amazon logo">
     <div class="formDiv">
-        {{#if added}}
-        <h1>Product added,</h1><br>
-        {{/if}}
-        <h1>Add a New Product</h1>
-        <form action="/products/addProducts" method="POST" enctype="multipart/form-data">
-            
+        <h1>Update Product</h1>
+        <form action="/products/editProducts/{{_id}}?method=PUT" method="POST" enctype="multipart/form-data">
             <br>
             <label for="pName" class="formLabel">Product Name</label>
             <input type="text" name="pName" id="pName" class="formInput" value="{{pName}}">
@@ -46,13 +42,7 @@
             <input type="checkbox" id="pBestSeller" name="pBestSeller" value="true" {{#if pBestSeller}}checked{{/if}}>
             <label for="pBestSeller" id="pBestSeller" class="formLabel"> Best Seller</label><br>
 
-            <label for="pImage" class="formLabel">Product image</label>
-            <input type="file" name="pImage" id="pImage" class="subButton">
-            {{#if imageError}}
-                <p id="errorWarning">{{imageError}}</p>
-            {{/if}}
-
-            <input type="submit" value="Add New Product" class="subButton">
+            <input type="submit" value="Update Product Details" class="subButton">
         </form>
        
         </div>

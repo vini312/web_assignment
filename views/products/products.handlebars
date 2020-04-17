@@ -9,9 +9,9 @@
     <div id="prodDiv">
         {{#each prodDB}}
             <div id="prodElement">
-                <img src="{{this.image}}" alt="{{this.name}}">
-                <p id="prodName">{{this.name}}</p>
-                <p id="prodPrice">{{this.price}}</p>
+                <a id="prodName" href="/products/prodDetails/{{this._id}}"></a><img src="{{this.image}}" alt="{{this.name}}">
+                <a id="prodName" href="/products/prodDetails/{{this._id}}">{{this.name}}</a><br><br>
+                <a id="prodPrice"  href="/products/prodDetails/{{this._id}}">${{this.price}}</a>
             </div>
         {{/each}}
     </div>
