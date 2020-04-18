@@ -9,7 +9,7 @@
         {{#each catDB}}
             <div id="catElement">
                 <h3>{{this.title}}</h3>
-                <img src="{{this.image}}" alt="{{this.title}}">
+                <a href="/products"><img src="{{this.image}}" alt="{{this.title}}"></a>
             </div>
         {{/each}}
     </div>
@@ -21,7 +21,7 @@
     <div id="bestDiv">
         {{#each bestDB}}
             <div id="bestElement">
-                <img src="{{this.image}}" alt="{{this.name}}">
+                <a href="/products/prodDetails/0/{{this._id}}"><img src="{{this.image}}" alt="{{this.name}}"></a>
             </div>
         {{/each}}
     </div>

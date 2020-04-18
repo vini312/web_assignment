@@ -43,8 +43,10 @@
                 <p id="errorWarning">{{catError}}</p>
             {{/if}}
 
-            <input type="checkbox" id="pBestSeller" name="pBestSeller" value="true" {{#if pBestSeller}}checked{{/if}}>
-            <label for="pBestSeller" id="pBestSeller" class="formLabel"> Best Seller</label><br>
+            <div id="divAddBest">
+                <input type="checkbox" id="pBestSeller" name="pBestSeller" value="true" {{#if pBestSeller}}checked{{/if}}>
+                <label for="pBestSeller" id="pBestSeller" class="formLabel"> Best Seller</label><br>
+            </div>
 
             <label for="pImage" class="formLabel">Product image</label>
             <input type="file" name="pImage" id="pImage" class="subButton">

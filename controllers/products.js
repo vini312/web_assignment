@@ -73,11 +73,21 @@ router.post("/",(req,res)=>{
 router.get("/prodDetails/:add/:id", (req,res)=>{
     //flag to show message that the product was added to cart
     let added;
+    let cartQty = 1;
     if(req.params.add == 1){
+        req.session.products.forEach((sessProd,j)=>{
+            if (req.params.id == sessProd._id) {
+                cartQty++;
+            }
+        });
+        
         //store the id of the product to be added to prodList
-       req.session.products.push(req.params.id);
+       req.session.products.push({_id:req.params.id, qty:cartQty});
        added = 1;
     }
+    req.session.products.forEach((teste, i)=>{
+    console.log(`GET do add cart obj: ${i}: ${teste._id}, qty: ${teste.qty}`);});
+
     productModel.findById(req.params.id)
     .then(product=>{
         // as this is a single obj destructor is enough to filter the data, map applies to array of objs
@@ -91,7 +101,8 @@ router.get("/prodDetails/:add/:id", (req,res)=>{
             price,
             description,
             quantity,
-            added
+            added,
+            cartQty
         });
     })
     .catch(err=>console.log(`Error when finding from database ${err}`))

@@ -2,9 +2,8 @@
     <img src="/img/amazon-logo.png" alt="Amazon logo">
     <div class="formDiv">
             <h1 id="confH1">{{user.name}}, Welcome to Amazon!</h1>
-            <p id="confMessage">
-                You have successfully logged in to our website and are ready to start!
-                <br><br>
+            <div id="confMessage">
+                <p>You have successfully logged in to our website and are ready to start!</p><br>
                 {{#if clerk}}
                     <a href="/userProdList" class="subButton">Products recently added</a>
                     <br><br>
@@ -16,6 +15,6 @@
                 Thank you for choosing Amazon!
                 <br><br>
                 <a href="/login/logout" class="subButton">Logout</a>
-            </p>
+            </div>
     </div>
 </div>

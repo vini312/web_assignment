@@ -3,10 +3,15 @@
     <div class="formDiv">
             {{#if empty}}
                 <h1 id="confH1">Your list is empty!</h1>
-                <p id="confMessage">
+                <div id="confMessage">
+                    {{#if clerk}}
+                        <a href="/products/addProducts" class="subButton">Add a new product</a>
+                        {{else}}
+                        <a href="/products" class="subButton">Start shopping right now!</a>
+                    {{/if}}
                     <br><br>
-                    Thank you for choosing Amazon!
-                </p>
+                    <p id="confMessage">Thank you for choosing Amazon!</p>
+                </div>
             {{else}}
                 {{#if clerk}}
                     <h1 id="confH1">Your list of recently added products!</h1>
@@ -18,8 +23,13 @@
                         <a id="prodName" href="/products/prodDetails/0/{{this._id}}"><img src="{{this.image}}" alt="{{this.name}}"></a>
                         <a id="prodName" href="/products/prodDetails/0/{{this._id}}">{{this.name}}</a><br><br>
                         <a id="prodPrice"  href="/products/prodDetails/0/{{this._id}}">${{this.price}}</a>
+                        <a id="prodPrice"  href="/products/prodDetails/0/{{this._id}}">Itens in cart: {{this.quantity}}</a>
                     </div>
                 {{/each}}
+                <br>
+                <p id="prodPrice">Total for you order: ${{totalPrice}}</p>
+                <br>
+                <p id="orderButton" class="subButton">Place you order</p>
             {{/if}}
     </div>
 </div>

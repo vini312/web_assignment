@@ -14,6 +14,7 @@ router.get("/",(req,res)=>{
         //filter the information necessary
         const bestSellerDB = bestSellers.map(bestSeller=>{
             return {
+                _id:bestSeller._id,
                 name: bestSeller.name,
                 image: bestSeller.image,
                 price: bestSeller.price,
@@ -44,7 +45,7 @@ router.get("/userProdList",(req,res)=>{
         productModel.find({_id: req.session.products})
         .then(products=>{
             //filter the information necessary
-            const prodList = products.map(product=>{
+            let prodList = products.map(product=>{
                 return {
                     _id:product._id,
                     name: product.name,
@@ -56,11 +57,28 @@ router.get("/userProdList",(req,res)=>{
                     description: product.description
                 }
             });
-            
+
+            //overwrite the value quantity to the quantity on cart, sice the original value i not necessary on this page
+            prodList.forEach((prod, i)=>{
+                req.session.products.forEach((sessProd,j)=>{
+                    if (prod._id == sessProd._id) {
+                        prod.quantity = sessProd.qty;
+                    }
+                });
+                console.log(`products obj DENTRO: ${i}: ${prod._id}, qty: ${prod.quantity}`);
+            });
+
+            let totalPrice = 0;
+            prodList.forEach((prod)=>{
+                totalPrice += prod.price * prod.quantity;
+            });
+
+            let finalPrice = totalPrice.toFixed(2);
             // as a response obj argument, render the file products.handlebars
             res.render("general/userProdList",{
                 title: "Your products",
-                prodList
+                prodList,
+                totalPrice: finalPrice
             });
         })
         .catch(err=>console.log(`Error when finding from database ${err}`))
