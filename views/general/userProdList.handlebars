@@ -24,13 +24,15 @@
                             <a id="prodName" href="/products/prodDetails/0/{{this._id}}"><img src="{{this.image}}" alt="{{this.name}}"></a>
                             <a id="prodName" href="/products/prodDetails/0/{{this._id}}">{{this.name}}</a><br><br>
                             <a id="prodPrice"  href="/products/prodDetails/0/{{this._id}}">${{this.price}}</a>
-                            <a id="prodPrice"  href="/products/prodDetails/0/{{this._id}}">Itens in cart: {{this.quantity}}</a>
+                            {{#if normalUser}}<a id="prodPrice"  href="/products/prodDetails/0/{{this._id}}">Itens in cart: {{this.quantity}}</a>{{/if}}
                         </div>
                     {{/each}}
-                    <br>
-                    <p id="prodPrice">Total for you order: ${{totalPrice}}</p>
-                    <br>
-                    <input type="submit" value="Place your order" class="subButton">
+                    {{#if normalUser}}
+                        <br>
+                        <p id="prodPrice">Total for you order: ${{totalPrice}}</p>
+                        <br>
+                        <input type="submit" value="Place your order" class="subButton">
+                    {{/if}}
                 </form>
             {{/if}}
     </div>
