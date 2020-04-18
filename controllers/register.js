@@ -1,6 +1,9 @@
 const express = require('express');
 //import the router
 const router = express.Router();
+// using Twilio SendGrid's v3 Node.js Library
+// https://github.com/sendgrid/sendgrid-nodejs
+const sgMail = require('@sendgrid/mail');
 //import the model to be able to use database
 const userModel = require("../model/user");
 
@@ -119,14 +122,6 @@ router.post("/",(req,res)=>{
                 const user = new userModel(newUser);
                 user.save()
                 .then(()=>{
-                    // temp redirect while email is deactivated
-                    res.redirect("registration/dashboard");
-
-                    /*
-                    // using Twilio SendGrid's v3 Node.js Library
-                    // https://github.com/sendgrid/sendgrid-nodejs
-                    const sgMail = require('@sendgrid/mail');
-
                     sgMail.setApiKey(process.env.SEND_GRID_API_KEY);
                     
                     const msg = {
@@ -146,7 +141,7 @@ router.post("/",(req,res)=>{
                     })
                     .catch(err=>{
                         console.log(`Error sending confirmation email: ${err}`);
-                    }) */
+                    })
                 })
                 .catch(err=>{
                     console.log(`Error creating the user on MongoDB: ${err}`)

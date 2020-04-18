@@ -5,13 +5,13 @@
         <form action="/login" method="POST">
 
             <label for="email" class="formLabel">Email</label>
-            <input type="text" name="email" id="email" class="formInput" value="sad@fu.com" {{formValues.email}}>
+            <input type="text" name="email" id="email" class="formInput" value={{formValues.email}}>
             {{#if emailError}}
                 <p id="errorWarning">{{emailError}}</p>
             {{/if}}
 
             <label for="password" class="formLabel">Password</label>
-            <input type="password" name="password" id="password" class="formInput" value="!!!!!!" {{formValues.password}}>
+            <input type="password" name="password" id="password" class="formInput" value={{formValues.password}}>
             <p class="formP">Password consist of at least 6 characters.</p>
             {{#if passError}}
                 <p id="errorWarning">{{passError}}</p>
@@ -20,7 +20,7 @@
             <input type="submit" value="Continue" class="subButton">
         </form>
         <div class="formAlt">
-            <p>New to Amazon? <a href="/login">Create an account ></a></p>
+            <p>New to Amazon? <a href="/registration">Create an account ></a></p>
         </div>
     </div>
 </div>

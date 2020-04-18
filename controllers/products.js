@@ -85,8 +85,6 @@ router.get("/prodDetails/:add/:id", (req,res)=>{
        req.session.products.push({_id:req.params.id, qty:cartQty});
        added = 1;
     }
-    req.session.products.forEach((teste, i)=>{
-    console.log(`GET do add cart obj: ${i}: ${teste._id}, qty: ${teste.qty}`);});
 
     productModel.findById(req.params.id)
     .then(product=>{
