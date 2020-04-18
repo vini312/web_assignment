@@ -151,7 +151,9 @@ footer > div > ul > li img
 
 #prodCat
 {
-    padding: 0px 10px;
+    padding: 10px;
+    max-width: 350px;
+    margin: auto;
 }
 
 #prodElement
@@ -302,7 +304,7 @@ footer > div > ul > li img
 #product img
 {
     margin: auto;
-    padding: 40px;
+    padding: 20px;
     width: 100%;
     max-width: 375px;
 }
@@ -310,7 +312,7 @@ footer > div > ul > li img
 #prodDetail
 {
     margin: auto;
-    padding: 40px 20px;
+    padding: 40px;
 }
 
 @media (max-width: 992px)
@@ -328,10 +330,15 @@ footer > div > ul > li img
         margin: auto;
     }
 
+    #imgHeaderDiv
+    {
+        border-bottom: 1px solid #ddd;
+    }
+
     nav > ul
     {
         display: grid;
-        grid-template-columns: 1fr 1fr 1fr 1fr;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
     }
 
     nav > ul > li
@@ -346,7 +353,6 @@ footer > div > ul > li img
         text-align: center;
         list-style: none;
         display: block;
-        border-top: 1px solid #ddd;
     }
 
     #catDiv
@@ -368,11 +374,6 @@ footer > div > ul > li img
     {
         display: grid;
         grid-template-columns: 1fr 1fr;
-    }
-
-    #prodCat
-    {
-        display: none;
     }
     
     .formLabel
@@ -407,6 +408,12 @@ footer > div > ul > li img
         border: 1px solid #a6a6a6;
         border-radius: 3px;
     }
+
+        
+    #product
+    {
+        grid-template-columns: 1fr;
+    }
 }
 
 @media (max-width: 768px)
@@ -423,6 +430,11 @@ footer > div > ul > li img
         list-style: none;
         display: block;
         border-top: 1px solid #ddd;
+    }
+
+    #imgHeaderDiv
+    {
+        border-bottom: none;
     }
 
     footer

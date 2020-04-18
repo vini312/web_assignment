@@ -3,7 +3,7 @@ const router = express.Router();
 //import the model to be able to use database
 const productModel = require("../model/product");
 
-//import the fake database
+//import the fake database for categories
 const DBs = require("../model/DBs");
 
 //get a request from http to the server to the root page

@@ -1,19 +1,21 @@
-<div id="productsPage">
-    <div id="prodCat">
-        <h3>Categories</h3><br>
-        <p>Electronics</p><br>
-        <p>Cell Phones</p><br>
-        <p>Tools</p><br>
-        <p>Nutrition</p><br>
-    </div>
-    <div id="prodDiv">
-        {{#each prodDB}}
-            <div id="prodElement">
-                <a id="prodName" href="/products/prodDetails/0/{{this._id}}"><img src="{{this.image}}" alt="{{this.name}}"></a>
-                <a id="prodName" href="/products/prodDetails/0/{{this._id}}">{{this.name}}</a><br><br>
-                <a id="prodPrice"  href="/products/prodDetails/0/{{this._id}}">${{this.price}}</a>
-            </div>
-        {{/each}}
-    </div>
-
+<div id="prodCat">
+    <form action="/products" method="POST">
+        <label for="pCat" class="formLabel">Category</label>
+        <select name="pCat" id="pCat" class="formInput">
+            <option value="none" selected disabled hidden>Select a category</option> 
+            {{#each catDB}}
+            <option value="{{this.title}}" {{#if_selected this.title ../pCat}}{{/if_selected}}>{{this.title}}</option>
+            {{/each}}
+        </select>
+        <input type="submit" value="Search by category" class="subButton">
+    </form>
+</div>
+<div id="prodDiv">
+    {{#each prodDB}}
+        <div id="prodElement">
+            <a id="prodName" href="/products/prodDetails/0/{{this._id}}"><img src="{{this.image}}" alt="{{this.name}}"></a>
+            <a id="prodName" href="/products/prodDetails/0/{{this._id}}">{{this.name}}</a><br><br>
+            <a id="prodPrice"  href="/products/prodDetails/0/{{this._id}}">${{this.price}}</a>
+        </div>
+    {{/each}}
 </div>

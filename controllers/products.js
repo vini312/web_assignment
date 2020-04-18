@@ -31,11 +31,41 @@ router.get("/",(req,res)=>{
         // as a response obj argument, render the file products.handlebars
         res.render("products/products",{
             title: "Products",
-            prodDB
+            prodDB,
+            catDB:DBs
         });
     })
     .catch(err=>console.log(`Error when finding from database ${err}`))
+});
 
+
+
+router.post("/",(req,res)=>{
+
+    productModel.find({category:req.body.pCat})
+    .then(products=>{
+        //filter the information necessary
+        const prodDB = products.map(product=>{
+            return {
+                _id:product._id,
+                name: product.name,
+                image: product.image,
+                price: product.price,
+                category: product.category,
+                bestSeller: product.bestSeller,
+                quantity: product.quantity,
+                description: product.description
+            }
+        });
+        // as a response obj argument, render the file products.handlebars
+        res.render("products/products",{
+            title: "Products",
+            prodDB,
+            catDB:DBs,
+            pCat:req.body.pCat
+        });
+    })
+    .catch(err=>console.log(`Error when finding from database ${err}`))
 });
 
 // the ":id" makes the last value on the url to be used as a parameter inside the get function
@@ -168,7 +198,7 @@ router.put("/editProducts/:id", (req, res)=>{
     {
         productModel.updateOne({_id:req.params.id},product)
         .then(()=>{
-            res.redirect(`/products/prodDetails/${req.params.id}`);
+            res.redirect(`/products/prodDetails/0/${req.params.id}`);
         })
         .catch(err=>console.log(`Error updating the product: ${err}`));
     }
