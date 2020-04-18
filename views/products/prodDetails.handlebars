@@ -5,7 +5,17 @@
         <p id="prodPrice">Price: ${{price}}</p><br><br>
         <p id="prodPrice">Quantity: {{quantity}}</p><br><br>
         <p id="productDesc">{{description}}</p><br><br>
-        <a href="/"><input type="button" value="Add to cart" class="subButton"></a><br><br>
-        <a href="/products/editProducts/{{_id}}"><input type="button" value="Edit product details" class="subButton"></a>
+        {{#if clerk}}
+            <a href="/products/editProducts/{{_id}}"><input type="button" value="Edit product details" class="subButton"></a>
+        {{else}}
+            {{#if normalUser}}
+                <a href="/products/prodDetails/1/{{_id}}"><input type="button" value="Add to cart" class="subButton"></a>
+            {{else}}
+                <a href="/login"><input type="button" value="Login to buy this product" class="subButton"></a>
+            {{/if}}
+        {{/if}}
+        {{#if added}}
+            <p id="errorWarning">Product added to your Shopping Cart</p>
+        {{/if}}
     </div>
 </div>

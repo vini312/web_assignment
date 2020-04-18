@@ -39,8 +39,15 @@ router.get("/",(req,res)=>{
 });
 
 // the ":id" makes the last value on the url to be used as a parameter inside the get function
-router.get("/prodDetails/:id", (req,res)=>{
-
+//":add" is a parameter to show if user clicked to add product to cart
+router.get("/prodDetails/:add/:id", (req,res)=>{
+    //flag to show message that the product was added to cart
+    let added;
+    if(req.params.add == 1){
+        //store the id of the product to be added to prodList
+       req.session.products.push(req.params.id);
+       added = 1;
+    }
     productModel.findById(req.params.id)
     .then(product=>{
         // as this is a single obj destructor is enough to filter the data, map applies to array of objs
@@ -53,7 +60,8 @@ router.get("/prodDetails/:id", (req,res)=>{
             image,
             price,
             description,
-            quantity
+            quantity,
+            added
         });
     })
     .catch(err=>console.log(`Error when finding from database ${err}`))
@@ -267,6 +275,7 @@ router.post("/addProducts",(req,res)=>{
 
             req.files.pImage.mv(`public/img/products/${req.files.pImage.name}`)
             .then(()=>{
+                req.session.products.push(product._id);
                 res.render("products/addProducts",{
                     title:"Add new product",
                     catDB:DBs,

@@ -46,8 +46,11 @@ app.use((req, res, next)=>{
     res.locals.user = req.session.userInfo;
 
     //check if user is defined to create a global variable that activate admin options (Add products)
-    if(req.session.userInfo && req.session.userInfo.type == "clerk"){
-        res.locals.clerk = 1;
+    if(req.session.userInfo){ 
+        if(req.session.userInfo.type == "clerk")
+            res.locals.clerk = 1;
+        else 
+            res.locals.normalUser = 1;
     }
     next();
 })

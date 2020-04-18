@@ -18,8 +18,11 @@
                 {{#if clerk}}
                     <li><a href="/products/addProducts">Add Products</a></li>
                 {{/if}}
+                {{#if normalUser}}
+                    <li><a href="/userProdList">Shopping Cart</a></li>
+                {{/if}}
                 {{#if user}}
-                    <li><a href="/login/logindashboard">Logged as {{user.name}}</a></li>
+                    <li><a href="/login/logindashboard">{{user.name}} dashboard</a></li>
                     <li><a href="/login/logout">Logout</a></li>
                 {{else}}
                     <li><a href="/registration">Customer Registration</a></li>

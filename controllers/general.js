@@ -33,4 +33,38 @@ router.get("/",(req,res)=>{
     .catch(err=>console.log(`Error when finding from database ${err}`))
 });
 
+router.get("/userProdList",(req,res)=>{
+    if(req.session.products == null || req.session.products == ''){
+        res.render("general/userProdList",{
+            title: "Your products",
+            empty: 1
+        });
+    }
+    else{
+        productModel.find({_id: req.session.products})
+        .then(products=>{
+            //filter the information necessary
+            const prodList = products.map(product=>{
+                return {
+                    _id:product._id,
+                    name: product.name,
+                    image: product.image,
+                    price: product.price,
+                    category: product.category,
+                    bestSeller: product.bestSeller,
+                    quantity: product.quantity,
+                    description: product.description
+                }
+            });
+            
+            // as a response obj argument, render the file products.handlebars
+            res.render("general/userProdList",{
+                title: "Your products",
+                prodList
+            });
+        })
+        .catch(err=>console.log(`Error when finding from database ${err}`))
+    }
+});
+
 module.exports = router;

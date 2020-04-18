@@ -12,7 +12,7 @@
 
             <label for="password" class="formLabel">Password</label>
             <input type="password" name="password" id="password" class="formInput" value="admin!" {{formValues.password}}>
-            <p class="formP">Password consist of at least 6 characters.</p class="formP">
+            <p class="formP">Password consist of at least 6 characters.</p>
             {{#if passError}}
                 <p id="errorWarning">{{passError}}</p>
             {{/if}}

@@ -1,0 +1,25 @@
+<div class="mainReg">
+    <img src="/img/amazon-logo.png" alt="Amazon logo">
+    <div class="formDiv">
+            {{#if empty}}
+                <h1 id="confH1">Your list is empty!</h1>
+                <p id="confMessage">
+                    <br><br>
+                    Thank you for choosing Amazon!
+                </p>
+            {{else}}
+                {{#if clerk}}
+                    <h1 id="confH1">Your list of recently added products!</h1>
+                {{else}}
+                    <h1 id="confH1">Your Shopping Cart!</h1>
+                {{/if}}
+                {{#each prodList}}
+                    <div id="prodElement">
+                        <a id="prodName" href="/products/prodDetails/0/{{this._id}}"><img src="{{this.image}}" alt="{{this.name}}"></a>
+                        <a id="prodName" href="/products/prodDetails/0/{{this._id}}">{{this.name}}</a><br><br>
+                        <a id="prodPrice"  href="/products/prodDetails/0/{{this._id}}">${{this.price}}</a>
+                    </div>
+                {{/each}}
+            {{/if}}
+    </div>
+</div>

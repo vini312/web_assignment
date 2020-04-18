@@ -94,6 +94,8 @@ router.post("/",(req,res)=>{
                     {
                         //create a session with the user found
                         req.session.userInfo = user;
+                        //create a variable to store user data on session
+                        req.session.products = [];
                         //redirect to dashboard
                         res.redirect("login/logindashboard");
                     }
