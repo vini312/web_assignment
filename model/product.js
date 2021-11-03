@@ -50,7 +50,7 @@ const productSchema = new Schema({
 
 
 //model allows CRUD operations on the collections
-const productModel = mongoose.model('products', productSchema);
+const productModel = mongoose.model('product', productSchema);
 
 //export the object of the model
 module.exports = productModel;
