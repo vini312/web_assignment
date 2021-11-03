@@ -28,6 +28,7 @@ router.get("/",(req,res)=>{
                 description: product.description
             }
         });
+        console.log("products-----",prodDB);
         // as a response obj argument, render the file products.handlebars
         res.render("products/products",{
             title: "Products",
